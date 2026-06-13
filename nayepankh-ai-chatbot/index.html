@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NayePankh AI Assistant</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ===== HERO SECTION ===== -->
+  <header class="hero">
+    <div class="hero-content">
+      <div class="logo-row">
+        <div class="logo-icon">🕊️</div>
+        <div>
+          <h1>NayePankh Foundation</h1>
+          <p class="tagline">AI-Powered Assistant — Giving Wings to Change</p>
+        </div>
+      </div>
+      <p class="hero-desc">
+        An AI chatbot built for volunteers, donors, and community members to instantly learn about
+        NayePankh's programs, impact, and how to get involved.
+      </p>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">2L+</span><span class="stat-label">People Helped</span></div>
+        <div class="stat"><span class="stat-num">30K+</span><span class="stat-label">Interns Trained</span></div>
+        <div class="stat"><span class="stat-num">80G</span><span class="stat-label">Tax Exempt</span></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== MAIN LAYOUT ===== -->
+  <main class="layout">
+
+    <!-- LEFT PANEL -->
+    <aside class="sidebar">
+      <div class="sidebar-card">
+        <h3>🤖 About This Project</h3>
+        <p>This AI chatbot uses the <strong>Anthropic Claude API</strong> to answer questions about NayePankh Foundation in real time.</p>
+      </div>
+
+      <div class="sidebar-card">
+        <h3>✨ Features</h3>
+        <ul>
+          <li>🧠 Conversation Memory</li>
+          <li>⚡ Real-time AI Responses</li>
+          <li>🔄 Multi-step Workflow</li>
+          <li>📋 Context-aware Replies</li>
+          <li>🌐 NGO Knowledge Base</li>
+        </ul>
+      </div>
+
+      <div class="sidebar-card">
+        <h3>📌 Quick Topics</h3>
+        <div class="quick-links">
+          <button class="quick-link" onclick="sendQuick('How can I volunteer with NayePankh?')">Volunteering</button>
+          <button class="quick-link" onclick="sendQuick('How do I donate to NayePankh?')">Donations</button>
+          <button class="quick-link" onclick="sendQuick('What educational programs does NayePankh run?')">Education</button>
+          <button class="quick-link" onclick="sendQuick('Tell me about NayePankh food distribution')">Food Programs</button>
+          <button class="quick-link" onclick="sendQuick('What is NayePankh doing for women hygiene?')">Women Hygiene</button>
+          <button class="quick-link" onclick="sendQuick('How can I apply for an internship at NayePankh?')">Internship</button>
+        </div>
+      </div>
+
+      <div class="sidebar-card memory-card" id="memory-panel">
+        <h3>🧠 Session Memory</h3>
+        <p class="mem-empty" id="mem-empty">Memory builds as you chat...</p>
+        <div id="mem-topics" class="mem-tags hidden"></div>
+        <div id="mem-profile" class="mem-profile hidden"></div>
+      </div>
+    </aside>
+
+    <!-- CHAT PANEL -->
+    <section class="chat-container">
+
+      <!-- Workflow steps -->
+      <div class="workflow-bar">
+        <div class="wf-step active" id="wf-1">
+          <span class="wf-dot"></span> User Input
+        </div>
+        <div class="wf-arrow">→</div>
+        <div class="wf-step" id="wf-2">
+          <span class="wf-dot"></span> Memory
+        </div>
+        <div class="wf-arrow">→</div>
+        <div class="wf-step" id="wf-3">
+          <span class="wf-dot"></span> Claude API
+        </div>
+        <div class="wf-arrow">→</div>
+        <div class="wf-step" id="wf-4">
+          <span class="wf-dot"></span> Response
+        </div>
+      </div>
+
+      <!-- Messages -->
+      <div class="messages" id="messages">
+        <div class="msg bot">
+          <div class="bot-avatar">🕊️</div>
+          <div class="bubble">
+            Namaste! 🙏 I'm the <strong>NayePankh AI Assistant</strong>.<br><br>
+            I can help you learn about our food distribution drives, sanitary pad campaigns, free education, volunteer opportunities, and donation process.<br><br>
+            What would you like to know today?
+          </div>
+        </div>
+      </div>
+
+      <!-- Typing indicator -->
+      <div class="typing-row hidden" id="typing">
+        <div class="bot-avatar">🕊️</div>
+        <div class="typing-bubble">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        </div>
+      </div>
+
+      <!-- Input -->
+      <div class="input-row">
+        <input
+          type="text"
+          id="user-input"
+          placeholder="Ask about NayePankh Foundation..."
+          onkeydown="if(event.key==='Enter') sendMessage()"
+          autocomplete="off"
+        />
+        <button class="send-btn" id="send-btn" onclick="sendMessage()" aria-label="Send message">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+        </button>
+      </div>
+
+      <p class="api-note">
+        🔑 Powered by <a href="https://www.anthropic.com" target="_blank">Anthropic Claude API</a> &nbsp;|&nbsp;
+        NGO: <a href="https://nayepankh.com" target="_blank">nayepankh.com</a>
+      </p>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <p>NayePankh Foundation AI Chatbot &mdash; Built as an AI Internship Project &mdash; Powered by Anthropic Claude API</p>
+    <p>NayePankh Foundation | UP Govt. Registered NGO | 80G & 12A | contact@nayepankh.com | +91-8318500748</p>
+  </footer>
+
+  <script src="js/memory.js"></script>
+  <script src="js/chat.js"></script>
+</body>
+</html>
